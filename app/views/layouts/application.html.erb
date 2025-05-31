@@ -28,7 +28,7 @@
     <nav class="bg-white shadow mb-6">
       <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
         <div class="text-xl font-bold">
-          <%= link_to "Habit Tracker", root_path, class: "text-blue-600 hover:text-blue-800" %>
+          <%= link_to "Habit Tracker", unauthenticated_root_path, class: "text-blue-600 hover:text-blue-800" %>
         </div>
         <div class="space-x-4">
           <% if user_signed_in? %>

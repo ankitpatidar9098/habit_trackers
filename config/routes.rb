@@ -13,6 +13,16 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 
-  root to: "users#index"
+  authenticated :user do
+    root 'habits#index', as: :authenticated_root
+  end
+  
+  unauthenticated do
+    root 'home#index', as: :unauthenticated_root
+  end
+
+  resources :habits do
+    resources :habit_checkins, only: [:create, :destroy]
+  end
 
 end
