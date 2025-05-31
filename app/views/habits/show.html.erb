@@ -1,0 +1,15 @@
+<h1 class="text-2xl font-bold mb-4"><%= @habit.name %></h1>
+<p class="mb-4 text-gray-600"><%= @habit.description %></p>
+
+<h2 class="text-lg font-semibold mb-2">Calendar</h2>
+<div class="grid grid-cols-7 gap-2">
+  <% start_date = @habit.created_at.to_date %>
+  <% (start_date..Date.today).each do |date| %>
+    <% checked = @habit.habit_checkins.exists?(checkin_date: date) %>
+    <div class="<%= checked ? 'bg-green-400' : 'bg-red-200' %> text-center rounded p-2">
+      <%= date.strftime('%d') %>
+      <%= button_to '', habit_habit_checkins_path(@habit, date: date), method: :post, class: 'block text-sm' unless checked %>
+      <%= button_to '', habit_path(@habit, date: date), method: :delete, class: 'block text-sm' if checked %>
+    </div>
+  <% end %>
+</div>
