@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "Habit Tracker" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
+    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="bg-gray-50 text-gray-800">
+    
+    <!-- Navbar -->
+    <nav class="bg-white shadow mb-6">
+      <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+        <div class="text-xl font-bold">
+          <%= link_to "Habit Tracker", root_path, class: "text-blue-600 hover:text-blue-800" %>
+        </div>
+        <div class="space-x-4">
+          <% if user_signed_in? %>
+            <span class="text-gray-700">Welcome, <%= current_user.email %></span>
+<%= button_to "Logout", destroy_user_session_path, method: :delete, data: { confirm: "Are you sure?" }, class: "text-red-500 hover:underline bg-white p-1 rounded" %>
+          <% else %>
+            <%= link_to "Login", new_user_session_path, class: "text-blue-500 hover:underline" %>
+            <%= link_to "Sign Up", new_user_registration_path, class: "text-green-500 hover:underline" %>
+          <% end %>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Flash Messages -->
+    <% if notice %>
+      <div class="max-w-3xl mx-auto mb-4 p-3 bg-green-100 text-green-700 rounded">
+        <%= notice %>
+      </div>
+    <% end %>
+
+    <% if alert %>
+      <div class="max-w-3xl mx-auto mb-4 p-3 bg-red-100 text-red-700 rounded">
+        <%= alert %>
+      </div>
+    <% end %>
+
+    <!-- Main Content -->
+    <%= yield %>
+  </body>
+</html>
