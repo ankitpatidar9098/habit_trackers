@@ -66,3 +66,8 @@ gem 'devise'
 gem "cssbundling-rails"
 
 gem "hotwire-rails", "~> 0.1.3"
+gem 'sidekiq'
+gem 'redis'
+gem 'sidekiq-scheduler'
+
+

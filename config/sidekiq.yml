@@ -1,0 +1,5 @@
+:concurrency: 5
+:schedule:
+weekly_summary_job:
+cron: "0 8 * * 1" # every Monday at 8 AM
+class: "WeeklySummaryJob"
