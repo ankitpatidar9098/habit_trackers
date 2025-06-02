@@ -4,4 +4,5 @@ class WeeklySummaryMailer < ApplicationMailer
       mail(to: @user.email, subject: "Your Weekly Habit Summary")
     end
   end
+ 
   
