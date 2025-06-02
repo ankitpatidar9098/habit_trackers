@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   end
   
   unauthenticated do
-    root 'home#index', as: :unauthenticated_root
+    root to: redirect('/users/sign_up'), as: :unauthenticated_root
   end
 
   resources :habits do

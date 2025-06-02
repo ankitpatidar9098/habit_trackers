@@ -1,15 +1,36 @@
-<h1 class="text-2xl font-bold mb-4">Your Habits</h1>
+<h1 class="display-5 mb-4 text-primary">Your Habits</h1>
 
-<%= link_to 'New Habit', new_habit_path, class: 'bg-blue-500 text-white px-4 py-2 rounded' %>
+<%= link_to 'New Habit', new_habit_path, class: 'btn btn-primary px-4 py-2 mb-4 fw-medium shadow-sm' %>
 
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-3">
   <% @habits.each do |habit| %>
-    <div class="border rounded-xl p-4 shadow">
-      <h2 class="text-xl font-semibold"><%= habit.name %></h2>
-      <p class="text-gray-500"><%= habit.description %></p>
-      <p class="text-sm mt-2">Current Streak: <%= current_streak(habit) %></p>
-      <p class="text-sm">Longest Streak: <%= longest_streak(habit) %></p>
-      <%= link_to 'View', habit_path(habit), class: 'text-blue-600 hover:underline mt-2 inline-block' %>
+    <div class="col">
+      <div class="card h-100 border-light shadow-sm hover-shadow">
+        <div class="card-body">
+          <h2 class="card-title h5 text-primary mb-3">
+            <%= habit.name %>
+          </h2>
+          <p class="card-text text-muted mb-4"><%= habit.description %></p>
+          
+          <div class="d-flex mb-3">
+            <div class="me-4">
+              <p class="small text-muted mb-1">Current Streak</p>
+              <p class="h5 text-purple mb-0"><%= current_streak(habit) %> <span class="text-danger">🔥</span></p>
+            </div>
+            <div>
+              <p class="small text-muted mb-1">Longest Streak</p>
+              <p class="h5 text-blue mb-0"><%= longest_streak(habit) %> <span class="text-warning">🏆</span></p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card-footer bg-transparent border-top-0">
+          <div class="d-flex justify-content-between">
+            <%= link_to 'View', habit_path(habit), class: 'btn btn-sm btn-primary px-3' %>
+            
+          </div>
+        </div>
+      </div>
     </div>
   <% end %>
 </div>

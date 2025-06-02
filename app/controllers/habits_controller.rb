@@ -7,6 +7,7 @@ class HabitsController < ApplicationController
   end
 
   def show
+    @habit = Habit.find(params[:id])
   end
 
   def new
@@ -23,6 +24,7 @@ class HabitsController < ApplicationController
   end
 
   def edit
+
   end
 
   def update
