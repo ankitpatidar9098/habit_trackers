@@ -1,0 +1,4 @@
+weekly_summary:
+ cron: "0 8 * * *"
+ class: 'WeeklySummaryJob'
+ queue: default
